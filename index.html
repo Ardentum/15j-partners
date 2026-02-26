@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>15J Partners</title>
+  <meta name="description" content="Unternehmerische Nachfolgelösung für Industrie-KMU im DACH-Raum. Eigenes Kapital, operative Verantwortung, schnelle Entscheidungen." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Set to your INSEAD green. Replace if you have the exact hex from the logo. */
+      --insead:#1A4530;
+
+      /* Neutrals */
+      --bg:#FFFFFF;
+      --bg-soft:#F7F9F8;
+      --text:#1A1A1A;
+      --text-2:#4A4A4A;
+      --line:#E6ECE9;
+
+      /* Layout */
+      --max:1120px;
+      --radius:16px;
+      --shadow: 0 10px 40px rgba(15,59,46,.10);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    a:hover{opacity:.92}
+    img{max-width:100%;display:block}
+
+    .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    .section{padding:92px 0}
+    .section.soft{background:var(--bg-soft)}
+    .kicker{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:650}
+    h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.1;margin:0 0 16px}
+    h1{font-size:clamp(34px,4vw,54px);font-weight:700}
+    h2{font-size:clamp(28px,3vw,40px);font-weight:700;color:var(--insead)}
+    h3{font-size:clamp(22px,2.2vw,28px);font-weight:700;color:var(--insead)}
+    p{margin:0 0 14px;color:var(--text-2);font-size:18px}
+    .small{font-size:15px;color:var(--text-2)}
+    .rule{height:1px;background:var(--line);margin:40px 0}
+
+    /* Header */
+    header{
+      position:sticky;top:0;background:rgba(255,255,255,.90);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid var(--line);
+      z-index:10;
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 0;gap:18px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    /* Logo minimum +200% */
+    .brand img{height:90px;width:auto}
+    nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+    nav a{font-size:15px;color:rgba(26,26,26,.70);font-weight:650}
+    nav a:hover{color:var(--insead)}
+    .nav-cta{display:flex;gap:10px;align-items:center}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 18px;border-radius:999px;font-weight:750;
+      border:1px solid var(--line);background:#fff;color:var(--insead);
+      transition:transform .08s ease, background .15s ease, border-color .15s ease, color .15s ease, opacity .15s ease;
+      font-size:15px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:focus{outline:3px solid rgba(26,69,48,.22);outline-offset:2px}
+
+    /* Header contact button in INSEAD green */
+    .btn.insead{
+      border-color:rgba(26,69,48,.35);
+      background:var(--insead);
+      color:#fff;
+    }
+    .btn.insead:hover{opacity:.94}
+
+    /* Mobile menu */
+    .menu-btn{display:none}
+    .mobile-menu{
+      display:none;border-top:1px solid var(--line);padding:12px 0;background:#fff
+    }
+    .mobile-menu.open{display:block}
+    .mobile-menu a{display:block;padding:10px 0;color:rgba(26,26,26,.70);font-weight:650}
+
+    /* HERO (colors inverted: background INSEAD green, content white) */
+    .hero{
+      background:var(--insead);
+      padding:78px 0 0;
+      color:#fff;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:36px;align-items:start}
+    .hero h1{color:#fff}
+    .hero p{max-width:720px;color:rgba(255,255,255,.88)}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+
+    /* Hero buttons and boxes in white */
+    .btn.hero-white{
+      background:#fff;
+      color:var(--insead);
+      border-color:rgba(255,255,255,.50);
+    }
+    .btn.hero-white:hover{opacity:.94}
+
+    .hero-card{
+      border:1px solid rgba(255,255,255,.35);
+      border-radius:var(--radius);
+      padding:20px 20px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      color:var(--insead);
+    }
+    .hero-card .stat{
+      display:flex;gap:18px;align-items:baseline;padding:14px 0;
+      border-bottom:1px solid rgba(26,69,48,.14)
+    }
+    .hero-card .stat:last-child{border-bottom:none}
+    .hero-card .num{
+      font-family:"Cormorant Garamond",Georgia,serif;
+      color:var(--insead);font-size:34px;font-weight:700;min-width:64px
+    }
+    .hero-card .lbl{color:rgba(26,69,48,.80);font-weight:700}
+
+    /* Full-width thicker divider under hero */
+    .hero-divider{
+      height:6px;
+      background:#fff;
+      width:100%;
+      margin-top:56px;
+    }
+
+    /* Mission section */
+    .mission-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:14px;
+      margin-top:26px;
+    }
+    .mission-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px 18px 16px;
+      background:#fff;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 8px 24px rgba(15,59,46,.06);
+    }
+    .mission-card:before{
+      content:"";
+      position:absolute;
+      top:0;left:0;
+      width:6px;height:100%;
+      background:var(--insead);
+    }
+    .mission-card .n{
+      font-family:"Cormorant Garamond",Georgia,serif;
+      color:rgba(26,69,48,.18);
+      font-size:40px;
+      font-weight:700;
+      margin-left:10px;
+      margin-bottom:6px;
+    }
+    .mission-card h3{margin:0 0 10px 10px}
+    .mission-card p{margin:0 0 0 10px;font-size:16px}
+
+    /* Team section with prominent images */
+    .people{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+    .person{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      background:#fff;
+      box-shadow:0 10px 30px rgba(15,59,46,.07);
+      display:grid;
+      grid-template-columns: 200px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    .person .photo{
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(26,69,48,.06), rgba(26,69,48,.01));
+      border:1px solid rgba(26,69,48,.14);
+      padding:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:260px;
+    }
+    .person .photo img{
+      width:100%;
+      height:auto;
+      max-height:320px;
+      object-fit:contain;
+    }
+    .person .role{font-size:14px;font-weight:750;color:rgba(26,69,48,.85);letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px}
+    .person ul{margin:10px 0 0 18px;color:var(--text-2)}
+    .person li{margin:8px 0}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line);padding:26px 0;background:#fff}
+    .footer-grid{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap}
+    .footer-links a{color:rgba(26,26,26,.70);font-weight:650;font-size:14px}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .mission-grid{grid-template-columns:repeat(2, 1fr)}
+      .people{grid-template-columns:1fr}
+      .person{grid-template-columns:1fr}
+      nav ul{display:none}
+      .menu-btn{display:inline-flex}
+      .brand img{height:96px}
+    }
+    @media (max-width: 560px){
+      .mission-grid{grid-template-columns:1fr}
+      .brand img{height:86px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="15J Partners Startseite">
+          <img src="assets/logo_15jp.png" alt="15J Partners Logo" />
+        </a>
+
+        <nav aria-label="Hauptnavigation">
+          <ul>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#suchprofil">Suchprofil</a></li>
+            <li><a href="#team">Team</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn insead" href="#kontakt">Kontakt</a>
+          <button class="btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">Menü</button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#mission">Mission</a>
+        <a href="#suchprofil">Suchprofil</a>
+        <a href="#team">Team</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker"></div>
+            <h1>Unternehmerische Nachfolgelösung für KMU im DACH-Raum.</h1>
+            <p>Wir investieren eigenes Kapital, übernehmen Verantwortung und führen selbst. Zwei Partner mit komplementären Profilen aus Unternehmertum und Strategieberatung, mit Fokus auf Industrieunternehmen und Umsetzung.</p>
+
+            <div class="hero-actions">
+              <a class="btn hero-white" href="#kontakt">Kontakt</a>
+              <a class="btn hero-white" href="#suchprofil">Suchprofil ansehen</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Kurzfakten">
+            <div class="stat">
+              <div class="num">30+</div>
+              <div class="lbl">Jahre kombinierte Erfahrung</div>
+            </div>
+	    <div class="stat">
+              <div class="num">Zwei</div>
+              <div class="lbl">langjährige Partner</div>
+            </div>
+            <div class="stat">
+              <div class="num">DACH</div>
+              <div class="lbl">Fokusregion</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="hero-divider" aria-hidden="true"></div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section" id="mission">
+      <div class="container">
+        <h2>Mission</h2>
+        <p>Wir übernehmen und führen Industrieunternehmen langfristig. Kein Fonds. Kein kurzfristiger Verkaufsdruck. Unternehmerische Verantwortung mit eigenem Kapital und direkter operativer Umsetzung.</p>
+
+        <div class="mission-grid">
+          <div class="mission-card">
+            <div class="n">01</div>
+            <h3>Eigenes Kapital</h3>
+            <p>Wir investieren selbst und handeln als Eigentümer. Das schafft Verpflichtung und Verlässlichkeit.</p>
+          </div>
+
+          <div class="mission-card">
+            <div class="n">02</div>
+            <h3>Aktive Führung</h3>
+            <p>Wir übernehmen Verantwortung in der Steuerung und, wo sinnvoll, in der operativen Führung.</p>
+          </div>
+
+          <div class="mission-card">
+            <div class="n">03</div>
+            <h3>Schnelle Entscheidungen</h3>
+            <p>Kurze Entscheidungswege, klare Timelines und pragmatische Umsetzung ohne Gremien.</p>
+          </div>
+
+          <div class="mission-card">
+            <div class="n">04</div>
+            <h3>Sondersituationen</h3>
+            <p>Wir arbeiten auch in komplexen Situationen, von stressed bis distressed, inklusive Turnaround.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- SEARCH PROFILE (optimized UI + reordered) -->
+<section class="section soft" id="suchprofil">
+  <style>
+    /* Scoped to #suchprofil */
+    #suchprofil{
+      --green: var(--insead, #1A4530);
+      --text:#122018;
+      --muted:#4f5f57;
+      --line: rgba(18,32,24,.10);
+      --line2: rgba(18,32,24,.06);
+      --shadow: 0 18px 50px rgba(18,32,24,.10);
+      --radius: 22px;
+      --radius2: 18px;
+    }
+
+    #suchprofil h2{
+      color: var(--green);
+      margin-bottom: .35rem;
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-weight:700;
+    }
+
+    #suchprofil .lead{
+      max-width: 78ch;
+      color: var(--muted);
+      margin: 0 0 1.4rem 0;
+    }
+
+    /* Big container card (made calmer, less "UI demo") */
+    #suchprofil .sp-card{
+      border: 1px solid var(--line2);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 40px rgba(18,32,24,.08);
+      background:
+        radial-gradient(1200px 420px at 12% 8%, rgba(26,69,48,.04), transparent 62%),
+        radial-gradient(900px 360px at 92% 18%, rgba(26,69,48,.03), transparent 58%),
+        linear-gradient(180deg, rgba(18,32,24,.02), rgba(18,32,24,0));
+      overflow: hidden;
+    }
+
+    /* Header inside card (no redundant bar) */
+    #suchprofil .sp-head{
+      text-align: center;
+      padding: 1.15rem 1.5rem 1.05rem 1.5rem;
+    }
+    #suchprofil .sp-head .title{ display:none; }
+    #suchprofil .sp-head .subtitle{
+      margin: 0 auto;
+      max-width: 72ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+
+    /* Sections divider rhythm */
+    #suchprofil .divider{
+      height: 1px;
+      background: var(--line2);
+      margin: 0;
+    }
+
+    /* Shared list styling */
+    #suchprofil .list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .55rem;
+    }
+    #suchprofil .list li{
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      align-items: start;
+      gap: .6rem;
+      color: var(--text);
+    }
+
+    /* Premium "tick" */
+    #suchprofil .tick{
+      width: 20px; height: 20px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      background: rgba(26,69,48,.08);
+      border: 1px solid rgba(26,69,48,.14);
+      font-weight: 900;
+      font-size: .9rem;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    /* 1) PROFILES FIRST */
+    #suchprofil .profiles{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.05rem;
+      padding: 1.15rem 1.25rem 1.15rem 1.25rem;
+    }
+
+    #suchprofil .profile{
+      border: 1px solid rgba(26,69,48,.12);
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(900px 220px at 18% 12%, rgba(26,69,48,.06), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.62));
+      padding: 1.05rem 1.10rem;
+    }
+
+    /* Headline style adjusted: less "shouty", more premium */
+    #suchprofil .profile h3{
+      margin: 0 0 .85rem 0;
+      color: var(--text);
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .95rem;
+      line-height: 1.25;
+      text-align: left;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* 2) SCREENING SECOND */
+    #suchprofil .screening{
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line2);
+      border-bottom: 1px solid var(--line2);
+      background: linear-gradient(90deg, rgba(26,69,48,.04), rgba(26,69,48,.02));
+    }
+
+    #suchprofil .screening .block{
+      padding: 1.10rem 1.25rem;
+    }
+    #suchprofil .screening .block + .block{
+      border-top: 1px solid var(--line2);
+    }
+
+    #suchprofil .label{
+      margin: 0 0 .75rem 0;
+      font-weight: 850;
+      color: var(--text);
+      font-size: 1.02rem;
+      text-align: left;
+    }
+
+    #suchprofil .mini{
+      margin: 0;
+      color: var(--muted);
+      text-align: left;
+      line-height: 1.55;
+    }
+
+    /* Transaction footer */
+    #suchprofil .tx{
+      padding: .75rem 1.25rem 1.25rem 1.25rem;
+      text-align: center;
+    }
+
+    /* Same size as other labels */
+    #suchprofil .tx h3{
+      margin: 0 0 .65rem 0;
+      color: var(--text);
+      font-weight: 850;
+      font-size: 1.02rem;
+      text-align: center;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: .01em;
+    }
+
+    #suchprofil .chips{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .55rem;
+    }
+
+    /* Chips feel less "pill UI", more understated */
+    #suchprofil .chip{
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,.78);
+      border-radius: 999px;
+      padding: .52rem .85rem;
+      color: rgba(18,32,24,.68);
+      font-size: .95rem;
+      line-height: 1;
+      white-space: nowrap;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+    #suchprofil .chip:hover{
+      transform: translateY(-1px);
+      border-color: rgba(26,69,48,.18);
+      background: rgba(255,255,255,.92);
+    }
+
+    /* Desktop layout */
+    @media (min-width: 900px){
+      #suchprofil .profiles{
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #suchprofil .screening{
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      #suchprofil .screening .block + .block{
+        border-top: 0;
+        border-left: 1px solid var(--line2);
+      }
+    }
+
+    /* Tighten on mobile */
+    @media (max-width: 560px){
+      #suchprofil .sp-head{ padding: 1rem 1rem .95rem 1rem; }
+      #suchprofil .profiles{ padding: 1rem 1rem 1rem 1rem; }
+      #suchprofil .screening .block{ padding: 1rem 1rem; }
+      #suchprofil .tx{ padding: .65rem 1rem 1rem 1rem; }
+    }
+  </style>
+
+  <div class="container">
+    <h2>Suchprofil</h2>
+    <p class="lead">Industrielle Mehrheitsbeteiligungen im DACH-Raum mit klar definiertem sektoralen Fokus und operativer Wertschöpfungsperspektive.</p>
+
+    <div class="sp-card" aria-label="Suchprofil Übersicht">
+
+      <!-- Order 1: Situations / profiles -->
+      <div class="profiles" aria-label="Investment-Profile">
+        <div class="profile">
+          <h3>Etablierte Industrieunternehmen<br>mit Entwicklungspotenzial</h3>
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Profitabel oder stabil</span></li>
+            <li><span class="tick">✓</span><span>Klare Marktposition</span></li>
+            <li><span class="tick">✓</span><span>Operative Skalierbarkeit</span></li>
+          </ul>
+        </div>
+
+        <div class="profile">
+          <h3>Sondersituationen<br>mit operativer Neuausrichtung</h3>
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Stressed oder distressed</span></li>
+            <li><span class="tick">✓</span><span>Restrukturierungsbedarf</span></li>
+            <li><span class="tick">✓</span><span>Komplexe operative Strukturen</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Order 2: Screening -->
+      <div class="screening" aria-label="Screening Kriterien">
+        <div class="block">
+          <p class="label">Sektor</p>
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Maschinen- und Anlagenbau</span></li>
+            <li><span class="tick">✓</span><span>Industriekomponenten</span></li>
+            <li><span class="tick">✓</span><span>Medizintechnik</span></li>
+            <li><span class="tick">✓</span><span>Technische Spezialanbieter</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <p class="label">Region</p>
+          <p class="mini"><strong style="color: var(--text); font-weight: 850;">DACH</strong><br>Deutschland · Schweiz · Österreich</p>
+        </div>
+
+        <div class="block">
+          <p class="label">Unternehmensgröße</p>
+          <ul class="list">
+            <li><span class="tick">✓</span><span>Umsatz CHF 20-50 Mio.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tx" aria-label="Transaktionsstruktur">
+        <h3>Transaktionsstruktur</h3>
+        <div class="chips">
+          <span class="chip">Mehrheitsübernahme</span>
+          <span class="chip">Unternehmernachfolge</span>
+          <span class="chip">Carve-out</span>
+          <span class="chip">Strukturierte Lösungen</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE ARE (rebuild) -->
+<section class="section" id="team">
+  <style>
+    #team{
+      --green: var(--insead, #1A4530);
+      --text:#122018;
+      --muted:rgba(26,26,26,.70);
+      --line: rgba(18,32,24,.08);
+    }
+
+    #team h2{
+      color: var(--green);
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-weight:700;
+      margin-bottom:.35rem;
+    }
+
+    #team .lead{
+      max-width:78ch;
+      margin:0 0 50px 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.6;
+    }
+
+    #team .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:90px;
+      align-items:start;
+      position:relative;
+    }
+
+    /* subtle vertical divider */
+    @media(min-width:980px){
+      #team .grid::after{
+        content:"";
+        position:absolute;
+        left:50%;
+        top:0;
+        bottom:0;
+        width:1px;
+        background:var(--line);
+        transform:translateX(-45px);
+      }
+    }
+
+    #team .profile{
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+    }
+
+    #team .portrait{
+      height:460px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    #team .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center bottom;
+    }
+
+    /* Name row with LinkedIn */
+    #team .name-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    #team .name{
+      margin:0;
+      font-family:"Cormorant Garamond",Georgia,serif;
+      font-size:38px;
+      line-height:1.05;
+      color:var(--green);
+    }
+
+    #team .linkedin{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:28px;
+      height:28px;
+      border-radius:6px;
+      border:1px solid rgba(26,69,48,.18);
+      color:var(--green);
+      text-decoration:none;
+      transition:all .15s ease;
+    }
+
+    #team .linkedin:hover{
+      background:rgba(26,69,48,.08);
+      border-color:rgba(26,69,48,.28);
+      transform:translateY(-1px);
+    }
+
+    #team .linkedin svg{
+      width:14px;
+      height:14px;
+      fill:currentColor;
+    }
+
+    #team .subtitle{
+      margin:6px 0 8px 0;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.55;
+      max-width:52ch;
+    }
+
+    #team .points{
+      display:grid;
+      gap:12px;
+      margin-top:6px;
+    }
+
+    #team .point{
+      position:relative;
+      padding-left:16px;
+      font-size:15px;
+      line-height:1.6;
+      color:rgba(26,26,26,.78);
+    }
+
+    #team .point::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.7em;
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:var(--green);
+      box-shadow:0 0 0 4px rgba(26,69,48,.10);
+    }
+
+    @media(max-width:980px){
+      #team .grid{grid-template-columns:1fr; gap:70px;}
+      #team .portrait{height:400px;}
+      #team .name{font-size:34px;}
+    }
+
+    @media(max-width:560px){
+      #team .portrait{height:340px;}
+    }
+
+  </style>
+
+  <div class="container">
+    <h2>Wer wir sind</h2>
+    <p class="lead">
+      Zwei langjährige Partner mit über 30 Jahren kombinierter Erfahrung.
+      Komplementär in Profil und Arbeitsweise, vereint in der operativen Verantwortung als Eigentümer.
+    </p>
+
+    <div class="grid">
+
+      <!-- Alex -->
+      <div class="profile">
+        <div class="portrait">
+          <img src="assets/amoser_profil_transparent.png" alt="Alex Moser">
+        </div>
+
+        <div class="name-row">
+          <h3 class="name">Alex Moser</h3>
+          <a class="linkedin" href="https://www.linkedin.com/in/alex-moser-17583b26/" target="_blank" rel="noopener">
+            <!-- LinkedIn SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6S0 4.88 0 3.5 1.12 1 2.49 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.07c.65-1.23 2.25-2.53 4.63-2.53C21.4 7.67 24 10.17 24 14.1V24h-5v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V24h-5V8z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="subtitle">
+          Unternehmer mit Exit-Erfahrung in Familienunternehmen.
+        </p>
+
+        <div class="points">
+          <div class="point">Operative und nachhaltige Neupositionierung</div>
+          <div class="point">Führung in komplexen industriellen Strukturen</div>
+          <div class="point">Fokus auf Umsetzung, Organisation und Ergebnisverantwortung</div>
+        </div>
+      </div>
+
+      <!-- Max -->
+      <div class="profile">
+        <div class="portrait">
+          <img src="assets/mlieber_profil_transparent.png" alt="Max Lieber">
+        </div>
+
+        <div class="name-row">
+          <h3 class="name">Max Lieber</h3>
+          <a class="linkedin" href="https://www.linkedin.com/in/maxlieber/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24">
+              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.49 6S0 4.88 0 3.5 1.12 1 2.49 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.7v2.2h.07c.65-1.23 2.25-2.53 4.63-2.53C21.4 7.67 24 10.17 24 14.1V24h-5v-8.2c0-1.96-.04-4.48-2.73-4.48-2.73 0-3.15 2.13-3.15 4.33V24h-5V8z"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="subtitle">
+          Ehemaliger Partner einer führenden Strategieberatung, mit Fokus auf Transformation, M&amp;A und Governance.
+        </p>
+
+        <div class="points">
+          <div class="point">Wertsteigerungsprogramme, Restrukturierung und Deal Execution</div>
+          <div class="point">Strategie, Finanzierung, Governance und Wachstum</div>
+          <div class="point">Operative Verantwortung als Eigentümer</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- CONTACT -->
+    <section class="section soft" id="kontakt">
+      <div class="container">
+        <h2>Kontakt</h2>
+        <p>Vertrauliche Anfragen behandeln wir diskret. Wir melden uns kurzfristig zurück.</p>
+
+        <form action="#" method="post" aria-label="Kontaktformular" style="display:grid;gap:12px;margin-top:18px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <label for="name" style="font-size:14px;color:rgba(26,26,26,.70);font-weight:750">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required
+                     style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit" />
+            </div>
+            <div>
+              <label for="email" style="font-size:14px;color:rgba(26,26,26,.70);font-weight:750">E-Mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" required
+                     style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit" />
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <label for="company" style="font-size:14px;color:rgba(26,26,26,.70);font-weight:750">Unternehmen</label>
+              <input id="company" name="company" type="text" autocomplete="organization"
+                     style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit" />
+            </div>
+            <div>
+              <label for="phone" style="font-size:14px;color:rgba(26,26,26,.70);font-weight:750">Telefon</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel"
+                     style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit" />
+            </div>
+          </div>
+
+          <div>
+            <label for="message" style="font-size:14px;color:rgba(26,26,26,.70);font-weight:750">Nachricht</label>
+            <textarea id="message" name="message" required
+                      placeholder="Kurz und vertraulich: Situation, Timing, nächster Schritt."
+                      style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);font:inherit;min-height:130px;resize:vertical"></textarea>
+            <div class="small">Bitte keine sensiblen Dokumente über dieses Formular senden.</div>
+          </div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px">
+            <button class="btn insead" type="submit">Absenden</button>
+            <a class="btn" href="mailto:contact@15jpartners.example">Oder per E-Mail</a>
+          </div>
+        </form>
+
+        <div class="rule" aria-hidden="true"></div>
+
+        <div class="small">
+          <strong>Direkt</strong><br/>
+          E-Mail: <a href="mailto:info@15j-partners.ch">info@15j-partners.ch</a><br/>
+          Telefon: <a href="tel:+41000000000">+41 00 000 00 00</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="small">© <span id="year"></span> - 15J Partners AG</div>
+        <div class="footer-links">
+          <a href="#top">Start</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="impressum.html">Impressum & Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(open));
+      });
+
+      menu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          menu.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  </script>
+</body>
+</html>
